@@ -32,3 +32,13 @@ output "eks_cluster_name" {
     description = "Name of the EKS cluster."
     value       = try(module.eks[0].cluster_name, null)
 }
+
+output "eks_cluster_role_arn" {
+    description = "IAM role ARN used by the EKS control plane."
+    value       = try(module.eks[0].cluster_role_arn, null)
+}
+
+output "eks_node_role_arn" {
+    description = "IAM role ARN used by the EKS managed node group."
+    value       = try(module.eks[0].node_role_arn, null)
+}
