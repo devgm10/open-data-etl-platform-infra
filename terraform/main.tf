@@ -73,3 +73,15 @@ module "eks" {
         ManagedBy   = "terraform"
     }
 }
+
+
+resource "terraform_data" "validate_eks_dependencies" {
+    input = local.eks_requires_vpc
+
+    lifecycle {
+        precondition {
+            condition     = local.eks_requires_vpc
+            error_message = "EKS requires VPC to be enabled. Set enable_vpc = true when enable_eks = true."
+        }
+    }
+}

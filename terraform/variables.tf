@@ -15,3 +15,7 @@ variable "enable_eks" {
     type        = bool
     default     = false
 }
+
+locals {
+    eks_requires_vpc = !var.enable_eks || var.enable_vpc
+}
