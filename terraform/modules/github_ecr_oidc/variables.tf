@@ -24,3 +24,9 @@ variable "tags" {
     type        = map(string)
     default     = {}
 }
+
+variable "github_environment" {
+    description = "GitHub environment allowed to assume the IAM role."
+    type        = string
+    default     = "production"
+}

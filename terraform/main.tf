@@ -44,6 +44,7 @@ module "github_ecr_oidc" {
 
     github_repository = "devgm10/open-data-etl-platform"
     github_branch     = "main"
+    github_environment = "production"
 
     ecr_repository_arns = values(module.ecr.repository_arns)
 
