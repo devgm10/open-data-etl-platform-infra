@@ -52,3 +52,13 @@ output "eks_cluster_arn" {
     description = "ARN of the EKS cluster."
     value       = try(module.eks[0].cluster_arn, null)
 }
+
+output "eks_node_group_name" {
+    description = "Name of the EKS managed node group."
+    value       = try(module.eks[0].node_group_name, null)
+}
+
+output "eks_node_group_arn" {
+    description = "ARN of the EKS managed node group."
+    value       = try(module.eks[0].node_group_arn, null)
+}
