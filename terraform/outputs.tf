@@ -27,3 +27,8 @@ output "github_actions_role_arn" {
     description = "IAM role ARN used by GitHub Actions to push images to ECR."
     value       = module.github_ecr_oidc.role_arn
 }
+
+output "eks_cluster_name" {
+    description = "Name of the EKS cluster."
+    value       = try(module.eks[0].cluster_name, null)
+}

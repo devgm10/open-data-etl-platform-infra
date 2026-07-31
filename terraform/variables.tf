@@ -9,3 +9,9 @@ variable "enable_vpc" {
     type        = bool
     default     = false
 }
+
+variable "enable_eks" {
+    description = "Enable creation of the EKS cluster resources."
+    type        = bool
+    default     = false
+}

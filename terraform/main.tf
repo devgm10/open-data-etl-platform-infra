@@ -55,3 +55,21 @@ module "github_ecr_oidc" {
         ManagedBy   = "terraform"
     }
 }
+
+
+module "eks" {
+    count  = var.enable_eks ? 1 : 0
+    source = "./modules/eks"
+
+    cluster_name    = "open-data-etl-platform-dev"
+    cluster_version = "1.32"
+
+    vpc_id             = try(module.vpc[0].vpc_id, "")
+    private_subnet_ids = try(module.vpc[0].private_subnet_ids, [])
+
+    tags = {
+        Project     = "open-data-etl-platform"
+        Environment = "lab"
+        ManagedBy   = "terraform"
+    }
+}

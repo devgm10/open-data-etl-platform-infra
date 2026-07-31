@@ -1,0 +1,1 @@
+# EKS resources will be defined in the next step.
