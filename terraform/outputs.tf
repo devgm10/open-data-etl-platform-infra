@@ -1,7 +1,17 @@
-# output "vpc_id" {
-#   description = "ID of the VPC."
-#   value       = module.vpc.vpc_id
-# }
+output "vpc_id" {
+    description = "ID of the VPC."
+    value       = try(module.vpc[0].vpc_id, null)
+}
+
+output "public_subnet_ids" {
+    description = "IDs of the public subnets."
+    value       = try(module.vpc[0].public_subnet_ids, [])
+}
+
+output "private_subnet_ids" {
+    description = "IDs of the private subnets."
+    value       = try(module.vpc[0].private_subnet_ids, [])
+}
 
 output "ecr_repository_urls" {
     description = "ECR repository URLs."

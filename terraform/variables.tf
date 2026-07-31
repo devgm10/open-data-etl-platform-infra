@@ -4,3 +4,8 @@ variable "aws_region" {
     default     = "us-east-2"
 }
 
+variable "enable_vpc" {
+    description = "Enable creation of the VPC networking resources."
+    type        = bool
+    default     = false
+}
