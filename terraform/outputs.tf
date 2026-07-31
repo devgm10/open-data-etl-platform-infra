@@ -42,3 +42,13 @@ output "eks_node_role_arn" {
     description = "IAM role ARN used by the EKS managed node group."
     value       = try(module.eks[0].node_role_arn, null)
 }
+
+output "eks_cluster_endpoint" {
+    description = "Endpoint for the EKS cluster API server."
+    value       = try(module.eks[0].cluster_endpoint, null)
+}
+
+output "eks_cluster_arn" {
+    description = "ARN of the EKS cluster."
+    value       = try(module.eks[0].cluster_arn, null)
+}
