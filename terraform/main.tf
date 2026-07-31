@@ -42,9 +42,9 @@ module "github_ecr_oidc" {
 
     role_name = "open-data-etl-platform-github-actions-role"
 
-    github_repository = "devgm10/open-data-etl-platform"
-    github_branch     = "main"
-    github_environment = "production"
+    github_subjects = [
+        "repo:devgm10@230413209/open-data-etl-platform@1313458717:environment:production"
+    ]
 
     ecr_repository_arns = values(module.ecr.repository_arns)
 
