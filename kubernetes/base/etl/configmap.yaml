@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: open-data-etl-config
+  namespace: data-platform
+  labels:
+    app: open-data-etl-platform
+    component: etl
+    environment: lab
+data:
+  APP_ENV: "production"
+  API_URL: "https://api.open-meteo.com/v1/forecast"
+  LATITUDE: "-12.0464"
+  LONGITUDE: "-77.0428"
+  OUTPUT_PATH: "/tmp/data/raw"
+  PROCESSED_PATH: "/tmp/data/processed"
+  LOG_LEVEL: "INFO"

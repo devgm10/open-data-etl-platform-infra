@@ -22,18 +22,6 @@ spec:
           image: 480415624657.dkr.ecr.us-east-2.amazonaws.com/open-data-etl-platform/etl:latest
           imagePullPolicy: Always
           command: ["python", "-m", "src.main"]
-          env:
-            - name: APP_ENV
-              value: "production"
-            - name: API_URL
-              value: "https://api.open-meteo.com/v1/forecast"
-            - name: LATITUDE
-              value: "-12.0464"
-            - name: LONGITUDE
-              value: "-77.0428"
-            - name: OUTPUT_PATH
-              value: "/tmp/data/raw"
-            - name: PROCESSED_PATH
-              value: "/tmp/data/processed"
-            - name: LOG_LEVEL
-              value: "INFO"
+          envFrom:
+            - configMapRef:
+                name: open-data-etl-config
