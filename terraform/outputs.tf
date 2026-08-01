@@ -67,3 +67,13 @@ output "aws_region" {
     description = "AWS region where the infrastructure is deployed."
     value       = var.aws_region
 }
+
+output "lab_admin_user_arn" {
+    description = "IAM user ARN used as the local admin principal for EKS access."
+    value       = aws_iam_user.lab_admin.arn
+}
+
+output "lab_admin_user_name" {
+    description = "IAM user name used as the local admin principal for EKS access."
+    value       = aws_iam_user.lab_admin.name
+}

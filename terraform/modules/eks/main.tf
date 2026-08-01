@@ -85,6 +85,11 @@ resource "aws_eks_cluster" "this" {
     version  = var.cluster_version
     role_arn = aws_iam_role.cluster.arn
 
+    access_config {
+        authentication_mode                         = "API"
+        bootstrap_cluster_creator_admin_permissions = false
+    }
+
     vpc_config {
         subnet_ids              = var.private_subnet_ids
         endpoint_private_access = true
@@ -101,6 +106,37 @@ resource "aws_eks_cluster" "this" {
             Name = var.cluster_name
         }
     )
+}
+
+resource "aws_eks_access_entry" "admin" {
+    cluster_name  = aws_eks_cluster.this.name
+    principal_arn = var.admin_principal_arn
+    type          = "STANDARD"
+
+    depends_on = [
+        aws_eks_cluster.this
+    ]
+
+    tags = merge(
+        var.tags,
+        {
+            Name = "${var.cluster_name}-admin-access-entry"
+        }
+    )
+}
+
+resource "aws_eks_access_policy_association" "admin" {
+    cluster_name  = aws_eks_cluster.this.name
+    principal_arn = aws_eks_access_entry.admin.principal_arn
+    policy_arn    = "arn:aws:eks::aws:cluster-access-policy/AmazonEKSClusterAdminPolicy"
+
+    access_scope {
+        type = "cluster"
+    }
+
+    depends_on = [
+        aws_eks_access_entry.admin
+    ]
 }
 
 resource "aws_eks_node_group" "main" {

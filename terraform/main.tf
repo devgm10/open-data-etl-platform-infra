@@ -67,6 +67,8 @@ module "eks" {
     vpc_id             = try(module.vpc[0].vpc_id, "")
     private_subnet_ids = try(module.vpc[0].private_subnet_ids, [])
 
+    admin_principal_arn = aws_iam_user.lab_admin.arn
+
     tags = {
         Project     = "open-data-etl-platform"
         Environment = "lab"
