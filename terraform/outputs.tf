@@ -62,3 +62,8 @@ output "eks_node_group_arn" {
     description = "ARN of the EKS managed node group."
     value       = try(module.eks[0].node_group_arn, null)
 }
+
+output "aws_region" {
+    description = "AWS region where the infrastructure is deployed."
+    value       = var.aws_region
+}
